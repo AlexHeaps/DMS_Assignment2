@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=6.3
 derby.system.home=C:\Users\Shiny\Desktop\GitHub Repositories\DMS_Assignment2\database
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Apr 22 12:40:14 NZST 2016: Shutting down Derby engine
+----------------------------------------------------------------
+Fri Apr 22 12:40:15 NZST 2016:
+Shutting down instance a816c00e-0154-3b41-a8db-000041d4c9b4 on database directory C:\Users\Shiny\Desktop\GitHub Repositories\DMS_Assignment2\database\motelDatabase with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------
