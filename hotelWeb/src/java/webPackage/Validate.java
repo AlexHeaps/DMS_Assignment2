@@ -12,13 +12,14 @@ import java.sql.*;
  * @author Alex Heaps
  */
 public class Validate {
-    public static boolean checkUser(String email, String password){
+
+    public static boolean checkUser(String email, String password) {
         boolean st = false;
-        
-        try{
+
+        try {
             //loaddrivers for mySQL
             Class.forName("com.mysql.jdbc.Driver");
-            
+
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
             PreparedStatement prepstat = conn.prepareStatement("SELECT * FROM guest where email=? and pass=?");
@@ -26,10 +27,47 @@ public class Validate {
             prepstat.setString(1, password);
             ResultSet resSet = prepstat.executeQuery();
             st = resSet.next();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return st;
+    }
+    //checks if there is a certain email in userlist
+    public static boolean uniqueEmailQuery(String email) {
+        boolean st = false;
+        try {
+            //loaddrivers for mySQL
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //create connection with DB
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
+            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM userlist WHERE email= " + email + ";");
+            prepstat.setString(1, email);
+            ResultSet resSet = prepstat.executeQuery();
+            st = resSet.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return st;
+    }
+    //adds a certain user/email/pass to db
+    public static boolean addUserToDb(String username, String email, String password) {
+        boolean st = false;
+        try {
+            //loaddrivers for mySQL
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //create connection with DB
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
+            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO userlist VALUES (" + username + ", " + email + ", " + password + ");");
+            //prepstat.setString(1, email);
+            prepstat.executeQuery();
+            st = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return st;
+
     }
 }
