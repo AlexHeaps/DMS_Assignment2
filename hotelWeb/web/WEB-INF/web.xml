@@ -21,8 +21,8 @@
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

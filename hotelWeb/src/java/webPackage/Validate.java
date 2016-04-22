@@ -42,7 +42,7 @@ public class Validate {
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM userlist WHERE email= " + email + ";");
+            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM guest WHERE email= " + email + ";");
             prepstat.setString(1, email);
             ResultSet resSet = prepstat.executeQuery();
             st = resSet.next();
@@ -60,7 +60,7 @@ public class Validate {
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO userlist VALUES (" + username + ", " + email + ", " + password + ");");
+            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO guest VALUES (" + username + ", " + email + ", " + password + ");");
             //prepstat.setString(1, email);
             prepstat.executeQuery();
             st = true;
@@ -68,6 +68,5 @@ public class Validate {
             e.printStackTrace();
         }
         return st;
-
-    }
+    } 
 }
