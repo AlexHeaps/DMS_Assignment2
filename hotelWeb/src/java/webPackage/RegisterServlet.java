@@ -32,11 +32,14 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             //if there are no emails in db, then:
             if (!Validate.uniqueEmailQuery(email)) {
                 RequestDispatcher resDis = request.getRequestDispatcher("Registry successful!");
+                //Add client to db
+                Validate.addUserToDb(username, email, password);
                 resDis.forward(request, response);
             } else {
                 out.println("Email is taken, try again");
