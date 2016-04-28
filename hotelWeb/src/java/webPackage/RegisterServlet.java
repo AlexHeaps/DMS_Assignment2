@@ -39,9 +39,9 @@ public class RegisterServlet extends HttpServlet {
 
             //if there are no emails in db, then:
             if (!Validate.uniqueEmailQuery(email)) {
-                RequestDispatcher resDis = request.getRequestDispatcher("Registry successful!");
                 //Add client to db
                 Validate.addUserToDb(password, firstName, lastName, email);
+                RequestDispatcher resDis = request.getRequestDispatcher("Registry successful!");
                 resDis.forward(request, response);
             } else {
                 out.println("Email is taken, try again");
