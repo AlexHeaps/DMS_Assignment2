@@ -32,19 +32,21 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String email = request.getParameter("email");
             String password = request.getParameter("password");
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+
             //if there are no emails in db, then:
             if (!Validate.uniqueEmailQuery(email)) {
                 RequestDispatcher resDis = request.getRequestDispatcher("Registry successful!");
                 //Add client to db
-                Validate.addUserToDb(username, email, password);
+                Validate.addUserToDb(password, firstName, lastName, email);
                 resDis.forward(request, response);
             } else {
                 out.println("Email is taken, try again");
                 //maybe instead of going to index, go back to register tab?
-                RequestDispatcher resDis = request.getRequestDispatcher("Index_new.html");
+                RequestDispatcher resDis = request.getRequestDispatcher("register.jsp");
                 resDis.include(request, response);
             }
             /* TODO output your page here. You may use following sample code.

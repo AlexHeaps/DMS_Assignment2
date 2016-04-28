@@ -42,7 +42,7 @@ public class Validate {
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM guest WHERE email= " + email + ";");
+            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM guest WHERE email= '" + email + "'");
             prepstat.setString(1, email);
             ResultSet resSet = prepstat.executeQuery();
             st = resSet.next();
@@ -52,7 +52,7 @@ public class Validate {
         return st;
     }
     //adds a certain user/email/pass to db
-    public static boolean addUserToDb(String username, String email, String password) {
+    public static boolean addUserToDb(String password, String firstName, String lastName, String email) {
         boolean st = false;
         try {
             //loaddrivers for mySQL
@@ -60,7 +60,7 @@ public class Validate {
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO guest VALUES (" + username + ", " + email + ", " + password + ");");
+            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO guest VALUES ('" + password + "', '" + firstName + "', '" + lastName + "', '" + email + "')");
             //prepstat.setString(1, email);
             prepstat.executeQuery();
             st = true;
