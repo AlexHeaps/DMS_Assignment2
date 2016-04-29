@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Finesse Hotels</title>
     </head>
     <body>
+        <div id="container">
+        </div>
         <div id="main">
             <form action="Login" method="post">
                 Username: <input type="username" name="username" /> <br>
