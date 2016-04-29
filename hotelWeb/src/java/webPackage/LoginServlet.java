@@ -26,10 +26,11 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         if(Validate.checkUser(email, password)){
+            out.println("Successful login");
             RequestDispatcher resDis = request.getRequestDispatcher("account.jsp");
             resDis.forward(request, response);
         } else {
-            out.println("Username or Password is incorect");
+            out.println("Username or Password is incorect. you have typed " +email+" "+password);
             RequestDispatcher resDis = request.getRequestDispatcher("login.jsp");
             resDis.include(request, response);
         }

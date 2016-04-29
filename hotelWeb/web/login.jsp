@@ -21,7 +21,7 @@
                 Password: <input type="password" name="password" /> <br>
                 <input type="submit" />
             </form>
-            <a href="/register.jsp">Click here to register!</a>
+            <a href="register.jsp">Click here to register!</a>
         </div>
     </body>
 </html>

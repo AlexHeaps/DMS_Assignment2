@@ -14,7 +14,7 @@
     <body>
         <header> Finesse Hotels</header>
         <div id="main">
-            <form action="registerServlet" method="post">
+            <form action="register" method="post">
                 Email: <input type="email" name="email"/> <br>
                 Password: <input type="password" name="password"/> <br>
                 First Name: <input type="text" name="firstName"/> <br>

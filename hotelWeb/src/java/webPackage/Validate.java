@@ -15,18 +15,17 @@ public class Validate {
 
     public static boolean checkUser(String email, String password) {
         boolean st = false;
-
         try {
             //loaddrivers for mySQL
             Class.forName("com.mysql.jdbc.Driver");
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("SELECT * FROM guest where email=? and pass=?");
-            prepstat.setString(1, email);
-            prepstat.setString(1, password);
-            ResultSet resSet = prepstat.executeQuery();
-            st = resSet.next();
+            Statement statement = conn.createStatement();
+            ResultSet resSet = statement.executeQuery("SELECT email, password FROM guest WHERE email='"+email+"' AND password='"+password+"'");
+            if(resSet.next()){
+                st=true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,9 +41,9 @@ public class Validate {
 
             //create connection with DB
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:1527/motelDatabase");
-            PreparedStatement prepstat = conn.prepareStatement("SELECT email FROM guest WHERE email= '" + email + "'");
-            prepstat.setString(1, email);
-            ResultSet resSet = prepstat.executeQuery();
+            Statement statement= conn.createStatement();
+            //prepstat.setString(1, email);
+            ResultSet resSet = statement.executeQuery("SELECT email FROM guest WHERE email='"+email+"'");
             st = resSet.next();
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,8 +61,8 @@ public class Validate {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:1527/motelDatabase");
             int incrementedID = 0;
             //prepstat to find the number of users in guest
-            PreparedStatement prepstat1 = conn.prepareStatement("SELECT COUNT(DISTINCT userID) as ID FROM guest");
-            ResultSet resSet = prepstat1.executeQuery();
+            Statement statement1 = conn.createStatement();
+            ResultSet resSet = statement1.executeQuery("SELECT COUNT(DISTINCT userID) as ID FROM guest");
             if(resSet.next()){
                 //set incrementedID as number of users in guest, then add one
                 incrementedID = resSet.getInt("ID");
@@ -72,8 +71,8 @@ public class Validate {
                 System.out.print("Incremented ID :" + incrementedID);
             }
             //add all details into table:Guest
-            PreparedStatement prepstat = conn.prepareStatement("INSERT INTO guest VALUES (userID="+incrementedID+",email='"+email+"', firstName='"+firstName+"', lastName='"+lastName+"', password='"+password+"')");
-            prepstat.executeQuery();
+            Statement statement2 = conn.createStatement();
+            statement2.executeQuery("INSERT INTO guest VALUES (userID="+incrementedID+",email='"+email+"', firstName='"+firstName+"', lastName='"+lastName+"', password='"+password+"')");
             st = true;
         } catch (Exception e) {
             e.printStackTrace();
