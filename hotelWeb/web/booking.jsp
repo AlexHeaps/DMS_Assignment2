@@ -14,9 +14,8 @@
     <body>
         <h1>What specifications are you looking for?</h1>
         <form action="Book" method="post">
-            Max Number of people: <input type="number" name="maxNumPeople" min="1" max="4"/> <br>
-            Penthouse <input type="checkbox" name="roomType" value="penthouse" /> <br>
-            Standard Room <input type="checkbox" name="roomType" value="standard" /> <br>
+            Max Number of people: <input type="number" name="maxNumPeople" min="1" max="6"/> <br>
+            Type of Room: <select name="roomType"><option>Deluxe</option><option>Standard</option>
             <input type="submit" />
         </form>
     </body>

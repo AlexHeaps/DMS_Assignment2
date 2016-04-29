@@ -19,7 +19,7 @@
                 Password: <input type="password" name="password"/> <br>
                 First Name: <input type="text" name="firstName"/> <br>
                 Last Name: <input type="text" name="lastName"/> <br>
-                <input type="submit" value="Register"/>
+                <input type="submit" value="register"/>
             </form>
         </div>
     </body>

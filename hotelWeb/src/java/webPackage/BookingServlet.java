@@ -10,29 +10,27 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-
 /**
  *
- * @author Alex Heaps
+ * @author Ryan
  */
-public class LoginServlet extends HttpServlet {
+public class BookingServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
-        if(Validate.checkUser(email, password)){
-            RequestDispatcher resDis = request.getRequestDispatcher("account.jsp");
-            resDis.forward(request, response);
-        } else {
-            out.println("Username or Password is incorect");
-            RequestDispatcher resDis = request.getRequestDispatcher("login.jsp");
-            resDis.include(request, response);
-        }
+        String maxNumPeople = request.getParameter("maxNumPeople");
+        String roomType = request.getParameter("roomType");        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
             if (!Validate.uniqueEmailQuery(email)) {
                 //Add client to db
                 Validate.addUserToDb(password, firstName, lastName, email);
-                RequestDispatcher resDis = request.getRequestDispatcher("Registry successful!");
+                RequestDispatcher resDis = request.getRequestDispatcher("login.jsp");
                 resDis.forward(request, response);
             } else {
                 out.println("Email is taken, try again");

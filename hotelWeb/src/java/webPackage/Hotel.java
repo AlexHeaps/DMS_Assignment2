@@ -6,27 +6,29 @@
 package webPackage;
 
 import java.io.Serializable;
+import java.util.*;
 
 /**
  *
- * @author Ryan
- * Hotel (room) bean
+ * @author Ryan Hotel (room) bean
  */
-public class Hotel implements Serializable{
+public class Hotel implements Serializable {
+
     private int roomNum;
     private int maxNumPeople;
     private String roomType;
     private boolean vacant;
-    private int occupiedBy;
+    private Date occupiedFrom;
+    private Date occupiedUntil;
 
-    public Hotel(){
+    public Hotel() {
+
         roomNum = 0;
         maxNumPeople = 0;
         roomType = null;
         vacant = false;
-        occupiedBy = 0;
     }
-    
+
     public int getRoomNum() {
         return roomNum;
     }
@@ -59,14 +61,24 @@ public class Hotel implements Serializable{
         this.vacant = vacant;
     }
 
-    public int getOccupiedBy() {
-        return occupiedBy;
+    public Date getOccupiedFrom() {
+        return occupiedFrom;
     }
 
-    public void setOccupiedBy(int occupiedBy) {
-        this.occupiedBy = occupiedBy;
+    public void setOccupiedFrom(Date occupiedFrom) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("DD-MM-YYYY");
+        String occFrom = sdf.format(occupiedFrom);
+        this.occupiedFrom = occupiedFrom;
     }
-    
-    
-    
+
+    public Date getOccupiedUntil() {
+        return occupiedUntil;
+    }
+
+    public void setOccupiedUntil(Date occupiedUntil) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("DD-MM-YYYY");
+        String occUntil = sdf.format(occupiedUntil);
+        this.occupiedUntil = occupiedUntil;
+    }
+
 }

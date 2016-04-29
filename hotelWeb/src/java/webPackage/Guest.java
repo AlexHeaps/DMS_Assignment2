@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 public class Guest implements Serializable {
     private int userID;
-    private String username;
     private String password;
     private String firstName;
     private String lastName;
@@ -23,7 +22,6 @@ public class Guest implements Serializable {
 
     public Guest() {
         userID = 0;
-        username = null;
         password = null;
         firstName = null;
         lastName = null;
@@ -38,15 +36,7 @@ public class Guest implements Serializable {
     public void setUserID(int userID) {
         this.userID = userID;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    
     public String getPassword() {
         return password;
     }
