@@ -30,10 +30,31 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher resDis = request.getRequestDispatcher("account.jsp");
             resDis.forward(request, response);
         } else {
-            out.println("Username or Password is incorect. you have typed " +email+" "+password);
+            out.println("Email or Password is incorect. you have typed " +email+" "+password);
+            System.out.println("Email or Password is incorect. you have typed " +email+" "+password);
             RequestDispatcher resDis = request.getRequestDispatcher("login.jsp");
             resDis.include(request, response);
         }
+    }
+    
+        public static boolean checkUser(String email, String password) {
+        boolean st = false;
+        try {
+            //loaddrivers for mySQL
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //create connection with DB
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:1527/moteldb");
+            Statement statement = conn.createStatement();
+            ResultSet resSet = statement.executeQuery("SELECT email, password FROM guest WHERE email='"+email+"' AND password='"+password+"'");
+            if(resSet.next()){
+                st=true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return st;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
